@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Text_rolling</title>
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        body{background: #f8f8f8;}
+        .clear{clear:both;}
+        .body{width: 1000px;height:1000px;margin:0 auto;background:#ffffff;}
+        .body li{list-style: none;}
+        .body li a{text-decoration:none;color:#111111;}
+        /**/
+        #text_rolling_single_line div{margin:10px 20px;}
+        #text_rolling_single_line .single_line_divclass{height:25px;line-height:25px;overflow:hidden;border:solid 1px #333333;}
+        #text_rolling_single_line .single_line_divclass ul li{padding-left:20px;}
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            var times;
+            $('#text_rolling_single_line .single_line_divclass').hover(function() {clearInterval(times);
+                },function() {
+                    times = setInterval('rolling_single_line(".single_line_divclass")',1000)
+                }).trigger("mouseleave");
+        });
+        function rolling_single_line(obj){
+            $(obj).find("ul").animate({marginTop:"-25px"},500,
+                function(){
+                    $(this).css({marginTop:"0px"}).find("li").eq(0).appendTo(this);
+                });
+        };
+    </script>
+</head>
+<body>
+    <div class="body">
+        <div id="text_rolling_single_line">
+            <div>
+                <h2>单行文字上下滚动</h2>
+            </div>
+            <div class="single_line_divclass">
+                <ul>
+                    <li><a href="#">11111111111111111111111111</a></li>
+                    <li><a href="#">22222222222222222222222222</a></li>
+                    <li><a href="#">33333333333333333333333333</a></li>
+                    <li><a href="#">44444444444444444444444444</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="text_rolling_multiline">
+            <div class="multi_line_divclass">
+                <ul>
+                    <li><a href="#">11111111111111111111111111</a></li>
+                    <li><a href="#">22222222222222222222222222</a></li>
+                    <li><a href="#">33333333333333333333333333</a></li>
+                    <li><a href="#">44444444444444444444444444</a></li>
+                    <li><a href="#">11111111111111111111111111</a></li>
+                    <li><a href="#">22222222222222222222222222</a></li>
+                    <li><a href="#">33333333333333333333333333</a></li>
+                    <li><a href="#">44444444444444444444444444</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
